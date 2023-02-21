@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "590645593934",
+    "firebase_url": "https://distribucionlactea-35f3d-default-rtdb.firebaseio.com",
+    "project_id": "distribucionlactea-35f3d",
+    "storage_bucket": "distribucionlactea-35f3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590645593934:android:0045fd6d4caff12ae5801f",
+        "android_client_info": {
+          "package_name": "com.example.firebasetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590645593934-qj7o3strhb1kkkcs6t1pjd06ern4b1kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvCi87H9iKs3JJT2AD2VkY6L-BN3gtGjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590645593934-qj7o3strhb1kkkcs6t1pjd06ern4b1kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590645593934:android:f0d21e2158510536e5801f",
+        "android_client_info": {
+          "package_name": "com.example.milkysoft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590645593934-qj7o3strhb1kkkcs6t1pjd06ern4b1kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvCi87H9iKs3JJT2AD2VkY6L-BN3gtGjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590645593934-qj7o3strhb1kkkcs6t1pjd06ern4b1kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textview.MaterialTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/name"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:layout_marginStart="42dp"
+
+    android:background="#00000000"
+    android:padding="10sp"
+    android:shadowColor="@color/white"
+
+    android:textColor="@color/black"
+    android:textSize="15sp" />

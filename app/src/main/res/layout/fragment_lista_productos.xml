@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".listaProductos"
+    android:id="@+id/layoutLista"
+    android:background="@color/purple_700">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:layout_marginTop="20pt">
+        <SearchView
+            android:id="@+id/srvProductos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50pt"
+    android:orientation="vertical"
+><TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Ejoy with the Offers"
+    android:textAlignment="center"
+    android:textSize="10pt"
+
+    android:textStyle="bold"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvlistaProductos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="5pt"
+        android:layout_marginBottom="30pt"
+        android:paddingTop="20pt"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/btnAgregarProducto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5pt"
+            android:layout_gravity="bottom"
+            android:text="Agregar Producto"/>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
