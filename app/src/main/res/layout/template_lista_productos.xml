@@ -272,11 +272,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:layout_marginLeft="10pt"
+                android:layout_marginLeft="2pt"
                 android:layout_gravity="center_vertical"
 
                 android:src="@drawable/eliminar48x48"
                 />
+            <ImageView
+                android:id="@+id/btnAñadirCarrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_vertical"
+
+                android:src="@drawable/carrito" />
             <ImageView
                 android:id="@+id/btnEditarTemplate"
                 android:layout_width="wrap_content"

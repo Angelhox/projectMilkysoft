@@ -14,6 +14,24 @@ public class Usuario {
     String fechaNacimiento;
     String fechaRegistro;
     String photoUsuario;
+    String contraseniaUsuario;
+    String cargoUsuario;
+
+    public String getContraseniaUsuario() {
+        return contraseniaUsuario;
+    }
+
+    public void setContraseniaUsuario(String contraseniaUsuario) {
+        this.contraseniaUsuario = contraseniaUsuario;
+    }
+
+    public String getCargoUsuario() {
+        return cargoUsuario;
+    }
+
+    public void setCargoUsuario(String cargoUsuario) {
+        this.cargoUsuario = cargoUsuario;
+    }
 
     public Usuario() {
     }
@@ -32,6 +50,7 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
         this.fechaRegistro = fechaRegistro;
         this.photoUsuario = photoUsuario;
+
     }
 
     public String getPhotoUsuario() {
@@ -153,7 +172,12 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Usuario(String codigoUsuario, String nombreUsuario, String apellidoUsuario, String cedulaUsuario, String telefonoUsuario, String correoUsuario, String provinciaUsuario, String cantonUsuario, String callesUsuario, String fechaNacimiento, String fechaRegistro) {
+    public Usuario(String id,String codigoUsuario, String nombreUsuario, String apellidoUsuario,
+                   String cedulaUsuario, String telefonoUsuario, String correoUsuario,
+                   String provinciaUsuario, String cantonUsuario, String callesUsuario,
+                   String fechaNacimiento,
+                   String fechaRegistro,String contraseniaUsuario,String cargoUsuario) {
+        this.id=id;
         this.codigoUsuario = codigoUsuario;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
@@ -165,5 +189,9 @@ public class Usuario {
         this.callesUsuario = callesUsuario;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaRegistro = fechaRegistro;
+        this.contraseniaUsuario=contraseniaUsuario;
+        this.cargoUsuario=cargoUsuario;
     }
+
+
 }

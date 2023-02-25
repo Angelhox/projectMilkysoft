@@ -1,14 +1,394 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragmentAddClientes">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="25pt"
+        android:background="@drawable/fondogeneraladdp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mis Clientes"
+            android:textSize="10pt"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30pt">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10pt"
+                    android:background="#F5CBA7"
+                    android:gravity="center">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="150pt"
+                        android:layout_height="75pt"
+                        android:layout_marginTop="10pt"
+
+                        android:layout_gravity="center"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="100dp">
+                        <ImageView
+
+                            android:id="@+id/imgAddCliente"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        android:gravity="center_horizontal">
+
+                        <Button
+                            android:id="@+id/btnUpdateimgCliente"
+                            android:layout_width="60pt"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="2pt"
+                            android:gravity="center_horizontal"
+                            android:background="#00000000"
+                            android:text="Editar" />
+
+                        <Button
+                            android:id="@+id/btnDeleteimgCliente"
+                            android:layout_width="60pt"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginHorizontal="2pt"
+                            android:background="#00000000"
+                            android:text="Eliminar"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5pt"
+                    android:background="#D19784"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informacion Basica"
+                        android:textAlignment="center"
+                        android:textSize="10pt"
+                        android:textStyle="normal"
+                        />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt">
+
+                    <EditText
+                        android:id="@+id/txtCodigoCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="Codigo usuario"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <TextView
+                        android:id="@+id/txtCorreoCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="25pt"
+                        android:hint="Correo"
+                        android:gravity="center"
+                        android:textStyle="italic"
+                        android:textColor="@color/black"
+                        android:textSize="7pt"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtNombreCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombres"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtApellidoCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Apellidos"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtTelefonoCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telefono"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt"
+                    app:helperText="Este campo es obligatorio">
+
+                    <EditText
+                        android:id="@+id/txtCelularCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Celular"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5pt"
+                    android:background="#FFF5CBA7"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Datos para tus comprobantes"
+                        android:textSize="10pt"
+                        android:textStyle="normal"
+                        android:textAlignment="center"
+                        />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtCedulaFactura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Cedula"
+                        android:maxLines="1"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtRucFactura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ruc"
+                        android:maxLines="1"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtTelefonoFactura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telefono"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtDireccionFactura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Direccion"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="5pt"
+                    android:background="#FFF5CBA7">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sobre tu ubicacion"
+                        android:textAlignment="center"
+                        android:textStyle="normal"
+                        android:textSize="10pt"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtUbicacionEntrega"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Calles"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5pt"
+                        android:layout_marginLeft="10pt"
+                        android:layout_marginRight="10pt" >
+
+                        <EditText
+                            android:id="@+id/txtLatitud"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="latitud"
+                            android:background="@color/white"
+                            android:imeOptions="actionNext"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5pt"
+                        android:layout_marginLeft="10pt"
+                        android:layout_marginRight="10pt" >
+
+                        <EditText
+                            android:id="@+id/txtLongitud"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Longitud"
+                            android:background="@color/white"
+                            android:imeOptions="actionNext"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt"
+                    app:helperTextTextColor="@color/black">
+
+                    <EditText
+                        android:id="@+id/txtMore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="¿Qieres agregar algo mas..?"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/btnGuardarCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5pt"
+            android:paddingHorizontal="30pt"
+            android:text="Guardar"/>
+    </LinearLayout>
+
 
 </FrameLayout>

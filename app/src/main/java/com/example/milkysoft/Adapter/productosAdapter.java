@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.milkysoft.Content;
 import com.example.milkysoft.Modelo.Producto;
 import com.example.milkysoft.R;
+import com.example.milkysoft.carritofragment;
 import com.example.milkysoft.fragmentAddProduct;
 import com.example.milkysoft.listaProductos;
 import com.example.milkysoft.menuInicio;
@@ -37,6 +38,7 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
     FragmentManager fm;
     FragmentManager fragmentManager;
     fragmentAddProduct mfragmentAddProduct;
+    int numeroPedido = (int)(Math.random() * (10000+1000)-1) + 1000;
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -101,6 +103,19 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
                 openFragment(v,id,frm);
             }
         });
+        holder.btnCarrito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                carritofragment carritofragment= new carritofragment();
+                Bundle bundle= new Bundle();
+                bundle.putString("id",id);
+                bundle.putString("numeroPedido","pedido"+String.valueOf(numeroPedido));
+                bundle.putString("codigoProducto", model.getCodigoProducto());
+                bundle.putString("photoProducto",model.getPhoto());
+                carritofragment.setArguments(bundle);
+                carritofragment.show(fm,"open fragment");
+            }
+        });
 
     }
     private void openFragment(View view,String id,fragmentAddProduct frm){
@@ -121,12 +136,13 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
         Intent i = new Intent(activity.getApplicationContext(),Content.class);
         i.putExtra("toShow","modificarProducto");
         i.putExtra("id_producto",id);
+
         activity.startActivity(i);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView name,codigo,peso,cantidad,stock,precioCompra,precioVenta,descripcion,unidadMedida,descripcionToShow;
-        ImageView btnEliminar,btnEditar,imgProducto;
+        ImageView btnEliminar,btnEditar,imgProducto,btnCarrito;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -143,6 +159,7 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
             imgProducto=itemView.findViewById(R.id.imgProducto);
             btnEliminar=itemView.findViewById(R.id.btnEliminarTemplate);
             btnEditar=itemView.findViewById(R.id.btnEditarTemplate);
+            btnCarrito=itemView.findViewById(R.id.btnAñadirCarrito);
         }
     }
 }

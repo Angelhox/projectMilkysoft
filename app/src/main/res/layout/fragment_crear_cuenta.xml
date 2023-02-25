@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragmentCrearCuenta">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10pt"
+            android:text="Crear Cuenta"
+
+            android:textStyle="bold"
+            android:textSize="15pt"
+            android:textAlignment="center"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperText="Ingresa tu correo "
+            android:layout_margin="5pt"
+            >
+
+            <EditText
+                android:id="@+id/etCrearCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:imeOptions="actionNext"
+                android:hint="Correo"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:helperText="Tu contraseña"
+            android:layout_margin="5pt"
+            >
+
+            <EditText
+                android:id="@+id/etCrearContraseña"
+                android:layout_width="match_parent"
+                android:imeOptions="actionNext"
+                android:layout_height="wrap_content"
+
+                android:hint="Contraseña"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/btnCrearCuentafr"
+            android:text="Crear Cuenta"
+
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="10pt"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

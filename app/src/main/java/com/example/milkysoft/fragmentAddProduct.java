@@ -280,7 +280,7 @@ private Producto productoToPost=null;
     }
     private void getProducto(){
         mfirestore=FirebaseFirestore.getInstance();
-        mfirestore.collection("Productos").                      document(id_producto).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        mfirestore.collection("Productos").document(id_producto).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 

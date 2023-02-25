@@ -1,18 +1,22 @@
 package com.example.milkysoft;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.milkysoft.databinding.FragmentMenuInicioBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,13 +28,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.milkysoft.databinding.ActivityContentBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Content extends AppCompatActivity {
+
     FragmentManager fragmentManager;
     listaProductos mlistaproductos=new listaProductos();
     menuInicio mMenuInicio= new menuInicio();
     fragmentAddProduct mfragmentAddProduct= new fragmentAddProduct();
     fragmentAddUsuario mfragmentAddUsuario=new fragmentAddUsuario();
+    fragmentAddClientes mfragmentAddCliente=new fragmentAddClientes();
+    listaPedidos mfragmentListaPedidos= new listaPedidos();
+
     String perfil=null;
     String toShow="";
 
@@ -52,6 +62,7 @@ public class Content extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),perfil,Toast.LENGTH_LONG).show();
         setSupportActionBar(binding.appBarContent.toolbar);
+        iniciarControles();
         binding.appBarContent.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +82,34 @@ public class Content extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_content);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+    }
+    private void iniciarControles(){
+        final View vistaHeader=binding.navView.getHeaderView(0);
+        final TextView tvUsuario=vistaHeader.findViewById(R.id.tvNombreUsuarioHead);
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        tvUsuario.setText(user.getEmail());
+        final TextView tvCerrarSession=vistaHeader.findViewById(R.id.tvCerrarSessionHead);
+        tvCerrarSession.setText("CerrarSesion");
+        tvCerrarSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("mode", "");
+                editor.putString("id_cliente", "");
+                editor.putBoolean("logeado", false);
+                editor.commit();
+
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getApplicationContext(),"Session Cerrada",Toast.LENGTH_SHORT).show();
+                goLogin();
+            }
+        });
+    }
+    private void goLogin(){
+        Intent i= new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(i);
     }
 
     @Override
@@ -78,6 +117,23 @@ public class Content extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.content, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.itCerrarSesion){
+            FirebaseAuth.getInstance().signOut();
+            SharedPreferences preferences =getSharedPreferences("preferenciasLogin",0);
+            SharedPreferences.Editor editor= preferences.edit();
+            editor.clear();
+            editor.commit();
+            Toast.makeText(getApplicationContext(),"Session Cerrada",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            goLogin();
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -120,6 +176,7 @@ public class Content extends AppCompatActivity {
         }
         switch (toShow){
             case "menuInicio":
+
                 fragmentManager=getSupportFragmentManager();
                 fragmentManager.beginTransaction().add(R.id.drawer_layout, mMenuInicio).show(mMenuInicio).commit();
             break;
@@ -148,7 +205,25 @@ public class Content extends AppCompatActivity {
                 fragmentManager=getSupportFragmentManager();
                 fragmentManager.beginTransaction().add(R.id.drawer_layout, mfragmentAddUsuario).show(mfragmentAddUsuario).commit();
                 break;
+            case"nuevoCliente":
+                fragmentManager=getSupportFragmentManager();
+                fragmentManager.beginTransaction().add(R.id.drawer_layout, mfragmentAddCliente).show(mfragmentAddCliente).commit();
+                break;
+            case "modificarCliente":
+                String idcliente1=getIntent().getStringExtra("id_cliente");
+                Bundle bundleCliente1=new Bundle();
+                bundleCliente1.putString("id_cliente",idcliente1);
+                mfragmentAddCliente.setArguments(bundleCliente1);
+                fragmentManager=getSupportFragmentManager();
+                fragmentManager.beginTransaction().add(R.id.drawer_layout, mfragmentAddCliente).show(mfragmentAddCliente).commit();
+                break;
+            case"listaPedidos":
+                fragmentManager=getSupportFragmentManager();
+                fragmentManager.beginTransaction().add(R.id.drawer_layout, mfragmentListaPedidos).show(mfragmentListaPedidos).commit();
+                break;
         }
+
+
     }
     @Override
     public void onBackPressed() {

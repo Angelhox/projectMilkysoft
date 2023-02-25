@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".listaProductos"
+    android:id="@+id/layoutListaAct"
+    android:background="@drawable/fondogeneralproductos">
+    <LinearLayout
+        android:layout_width="150pt"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="10pt"
+        android:background="@drawable/button_rounded"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20pt">
+        <SearchView
+            android:id="@+id/srvPedidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="45pt"
+        android:orientation="vertical"
+        ><TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nuestros Productos"
+
+        android:textAlignment="center"
+        android:textSize="10pt"
+
+        android:textStyle="italic|bold"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvlistaPedidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="5pt"
+            android:layout_marginBottom="30pt"
+            android:paddingTop="2pt"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/btnAgregarPedidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5pt"
+
+            android:paddingHorizontal="30pt"
+            android:text="Agregar Producto"/>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

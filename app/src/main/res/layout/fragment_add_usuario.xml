@@ -82,6 +82,20 @@
                             android:text="Eliminar"/>
                     </LinearLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5pt"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informacion de la cuenta"
+                        android:textAlignment="center"
+                        android:textSize="10pt"
+                        android:textColor="@color/black"
+                        />
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,6 +113,86 @@
                         android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtCorreoUsuarioadd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/black"
+                        android:hint="Correo"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="8pt"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="5pt"
+                    android:layout_marginLeft="10pt"
+                    android:layout_marginRight="10pt" >
+
+                    <EditText
+                        android:id="@+id/txtContraseniaUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:textColor="@color/black"
+                        android:hint="Contraseña"
+                        android:background="@color/white"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/btnCrearCuentafrus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5pt"
+                    android:paddingHorizontal="30pt"
+                    android:text="Crear Cuenta"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white"
+                    android:layout_margin="5pt">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informacion Basica"
+                        android:textSize="10pt"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5pt"
+                        android:layout_marginLeft="10pt"
+                        android:layout_marginRight="10pt" >
+
+                        <EditText
+                            android:id="@+id/txtCargoUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Cargo del usuario"
+                            android:background="@color/white"
+                            android:imeOptions="actionNext"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -117,6 +211,7 @@
                         android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -168,23 +263,8 @@
                         android:imeOptions="actionNext"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5pt"
-                        android:layout_marginLeft="10pt"
-                        android:layout_marginRight="10pt" >
+                </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/txtCorreoUsuario"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Correo"
-                            android:background="@color/white"
-                            android:imeOptions="actionNext"
-                            android:inputType="text" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
