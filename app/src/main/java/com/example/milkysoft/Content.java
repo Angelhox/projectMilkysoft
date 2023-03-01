@@ -177,7 +177,7 @@ public class Content extends AppCompatActivity {
             goLogin();
 
         }
-        if(id==R.id.itIniciarSesion){
+      /*  if(id==R.id.itIniciarSesion){
             FirebaseAuth.getInstance().signOut();
             SharedPreferences preferences =getSharedPreferences("preferenciasLogin",0);
             SharedPreferences.Editor editor= preferences.edit();
@@ -187,7 +187,7 @@ public class Content extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             goLogin();
 
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

@@ -202,7 +202,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Facturas"
+                        android:text="Rutas"
                         android:textAlignment="center"
                         android:padding="3pt"
                         android:textStyle="bold"
@@ -212,7 +212,7 @@
                         android:layout_width="75pt"
                         android:layout_height="50pt"
                         android:layout_gravity="center"
-                        android:src="@drawable/facturas96x96"
+                        android:src="@drawable/rutas"
 
                         />
                     <TextView

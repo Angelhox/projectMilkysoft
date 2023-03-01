@@ -12,7 +12,7 @@
         android:layout_height="200pt"
         android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        android:background="@drawable/fondoproductos">>
+        android:background="@drawable/fondouser">>
 
 
         <LinearLayout

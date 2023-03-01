@@ -134,6 +134,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
+            android:drawableRight="@drawable/location32x32"
             android:text="Ver Ubicacion"/>
 
         <LinearLayout
@@ -173,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Codigo pedido"
-
+android:visibility="gone"
         android:textAlignment="center"
         android:textSize="10pt"
 
@@ -183,8 +184,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="5pt"
+
             android:layout_marginBottom="30pt"
-            android:paddingTop="2pt"/>
+            android:paddingTop="3pt"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

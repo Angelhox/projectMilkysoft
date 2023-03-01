@@ -182,7 +182,7 @@
                         android:hint="Telefono"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -199,7 +199,7 @@
                         android:hint="Celular"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -231,7 +231,7 @@
                         android:maxLines="1"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -249,7 +249,7 @@
                         android:maxLines="1"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -266,7 +266,7 @@
                         android:hint="Telefono"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -331,7 +331,7 @@
                             android:hint="latitud"
                             android:background="@color/white"
                             android:imeOptions="actionNext"
-                            android:inputType="text" />
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
@@ -348,7 +348,7 @@
                             android:hint="Longitud"
                             android:background="@color/white"
                             android:imeOptions="actionNext"
-                            android:inputType="text" />
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout

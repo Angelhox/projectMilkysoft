@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class carritofragment extends DialogFragment {
+public class  carritofragment extends DialogFragment {
     private FrameLayout constraintLayout;
     String id;
     String usuarioAccion = "";

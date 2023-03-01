@@ -129,7 +129,7 @@
                         android:hint="Correo"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="textEmailAddress" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -151,7 +151,7 @@
                         android:hint="Contraseña"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
@@ -160,6 +160,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5pt"
                     android:paddingHorizontal="30pt"
+                    android:textColor="@color/white"
                     android:text="Crear Cuenta"/>
                 </LinearLayout>
                 <LinearLayout
@@ -244,7 +245,7 @@
                         android:maxLines="1"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -261,7 +262,7 @@
                         android:hint="Telefono"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -370,6 +371,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5pt"
+            android:textColor="@color/white"
             android:paddingHorizontal="30pt"
             android:text="Guardar"/>
     </LinearLayout>

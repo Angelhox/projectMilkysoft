@@ -55,7 +55,7 @@
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/btnIniciarCorreo"
@@ -81,7 +81,7 @@
                 android:id="@+id/btnInvitado"
                 android:text="Continua como Invitado"
                 android:textColor="@color/white"
-                android:drawableLeft="@drawable/googleblk32x32"
+                android:drawableLeft="@drawable/anonimo32x32"
                 android:layout_marginHorizontal="10pt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

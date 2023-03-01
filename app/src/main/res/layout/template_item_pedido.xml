@@ -137,20 +137,26 @@
             android:orientation="horizontal"
             >
             <Button
+                android:drawableLeft="@drawable/delete32x32"
                 android:id="@+id/btnEliminarItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_margin="5pt"
-                android:text="Quitar"/>
+                />
             <Button
                 android:id="@+id/btnMasItem"
+                android:drawableRight="@drawable/add32x32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_margin="5pt"
-                android:text="+"/>
+                />
             <Button
                 android:id="@+id/btnMenosItem"
                 android:layout_width="wrap_content"
+                android:textColor="@color/white"
+                android:visibility="gone"
                 android:layout_margin="5pt"
                 android:layout_height="wrap_content"
                 android:text="-"/>

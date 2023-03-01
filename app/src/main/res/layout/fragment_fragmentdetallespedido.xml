@@ -130,7 +130,9 @@
             android:id="@+id/btnUbicacionEntrega"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
+            android:drawableRight="@drawable/location32x32"
             android:text="Añadir Ubicacion"/>
 
         <LinearLayout
@@ -167,6 +169,7 @@
         android:layout_marginBottom="10pt"
         android:orientation="vertical"
         ><TextView
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Codigo pedido"
@@ -213,7 +216,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5pt"
-
+           android:textColor="@color/white"
             android:paddingHorizontal="30pt"
             android:text="Enviar Pedido"/>
 

@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +73,7 @@ public class fragmentAddClientes extends Fragment {
     private Clientes clienteToPost=null;
     private static final int COD_SEL_STORAGE=200;
     private static final int COD_SEL_IMAGE=300;
+    int numerocliente= (int)(Math.random() * (10000+1000)-1) + 1000;
     StorageReference storageReference;
     String storagePath="imgClientes/*";
     private Uri img_url;
@@ -113,6 +116,15 @@ public class fragmentAddClientes extends Fragment {
         iniciarControles();
 
         imgCliente.setImageResource(R.drawable.img);
+        txtCodigoCliente.setText("cliente"+String.valueOf(numerocliente));
+        txtTelefonoCliente.
+                setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        txtTelefonoFacturacion.setText(txtTelefonoCliente.getText().toString());
+                        return true;
+                    }
+                });
         btnUpdateimgCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,6 +255,18 @@ public class fragmentAddClientes extends Fragment {
     }
     private void postClientes(Clientes cliente){
         mfirestore= FirebaseFirestore.getInstance();
+        SharedPreferences preferences = getActivity().getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("mode", "cliente");
+        editor.putString("id_cliente", id_cliente);
+        editor.putBoolean("logeado", true);
+        editor.putString("nombreUsuario",cliente.getNombreCliente()+" "+cliente.getApellidoCliente());
+        editor.putString("correoUsuario",cliente.getCorreoCliente());
+        editor.putString("cedulaUsuario",cliente.getCedulaFacturacion());
+        editor.putString("telefonoUsuario",cliente.getTelefonoFacturacion());
+        editor.putString("direccionUsuario",cliente.getDireccionFacturacion());
+        editor.commit();
+
         Map<String,Object> map=new HashMap<>();
         map.put("codigoCliente",cliente.getCodigoCliente());
         map.put("nombreCliente",cliente.getNombreCliente());
@@ -263,6 +287,8 @@ public class fragmentAddClientes extends Fragment {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getContext(),"Has registrado a "+cliente.getCorreoCliente(),Toast.LENGTH_LONG).show();
+                SharedPreferences preferences = getActivity().getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+
                 back();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -468,7 +494,8 @@ public class fragmentAddClientes extends Fragment {
 
     private void back(){
 
-        Intent i = new Intent(getContext(),listaClientesact.class);
+        Intent i = new Intent(getContext(),Content.class);
+        i.putExtra("toShow","menuInicio");
         startActivity(i);
 
     }

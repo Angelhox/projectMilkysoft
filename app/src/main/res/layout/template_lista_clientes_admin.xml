@@ -325,8 +325,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10pt"
                 android:padding="5dp"
-
-                android:src="@drawable/eliminar48x48" />
+                android:src="@drawable/detalles48x48"
+              />
             <ImageView
                 android:id="@+id/btnEditarClienteTemplate"
                 android:layout_width="wrap_content"
@@ -334,8 +334,8 @@
                 android:padding="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center_vertical"
-
-                android:src="@drawable/editar48x48" />
+                android:src="@drawable/profile48x48"
+                />
 
         </LinearLayout>
 

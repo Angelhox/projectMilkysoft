@@ -161,7 +161,7 @@
                         android:background="@color/white"
                         android:hint="Peso/Contenido"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="numberDecimal" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,7 +193,7 @@
                         android:hint="Contenido"
                         android:background="@color/white"
                         android:imeOptions="actionNext"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -304,7 +304,7 @@
                             android:background="@color/white"
                             android:editable="false"
                             android:imeOptions="actionNext"
-                            android:inputType="text" />
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
@@ -344,7 +344,7 @@
                                 android:hint="Precio Compra 0.00$"
                                 android:background="@color/white"
                                 android:imeOptions="actionNext"
-                                android:inputType="text" />
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
@@ -512,6 +512,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5pt"
             android:paddingHorizontal="30pt"
+            android:textColor="@color/white"
             android:text="Guardar"/>
     </LinearLayout>
 
