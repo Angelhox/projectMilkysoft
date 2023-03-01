@@ -11,22 +11,22 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.milkysoft.Modelo.Pedidos;
 import com.example.milkysoft.R;
 import com.example.milkysoft.fragmentdetallespedido;
+import com.example.milkysoft.fragmentdetallespedidoAdmin;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 
-public class pedidosAdapter extends FirestoreRecyclerAdapter<Pedidos,pedidosAdapter.ViewHolder> {
+public class pedidosAdapterAdmin extends FirestoreRecyclerAdapter<Pedidos, pedidosAdapterAdmin.ViewHolder> {
     Activity activity;
     FragmentManager fm;
 
-    public pedidosAdapter(@NonNull FirestoreRecyclerOptions<Pedidos> options, Activity activity, FragmentManager fm) {
+    public pedidosAdapterAdmin(@NonNull FirestoreRecyclerOptions<Pedidos> options, Activity activity, FragmentManager fm) {
         super(options);
         this.activity=activity;
         this.fm=fm;
@@ -78,15 +78,19 @@ public class pedidosAdapter extends FirestoreRecyclerAdapter<Pedidos,pedidosAdap
         holder.btnDetallesPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentdetallespedido frdetallespedido= new fragmentdetallespedido();
+                SharedPreferences preferenciasusuarioaccion=activity.getSharedPreferences("preferenciasusuarioaccion",0);
+                String usuarioaccion=preferenciasusuarioaccion.getString("usuarioaccion","null");
+
+                fragmentdetallespedidoAdmin frdetallespedidoAdmin= new fragmentdetallespedidoAdmin();
                 Bundle bundle= new Bundle();
                 SharedPreferences preferencias = activity.getSharedPreferences("pedidoCuestion",0);
                 SharedPreferences.Editor editor = preferencias.edit();
                 editor.putString("pedidoCuestion",id);
                 editor.commit();
                 bundle.putString("id_pedido",id);
-                frdetallespedido.setArguments(bundle);
-                frdetallespedido.show(fm,"open fragment");
+                bundle.putString("usuarioaccion",usuarioaccion);
+                frdetallespedidoAdmin.setArguments(bundle);
+                frdetallespedidoAdmin.show(fm,"open fragment");
             }
         });
     }

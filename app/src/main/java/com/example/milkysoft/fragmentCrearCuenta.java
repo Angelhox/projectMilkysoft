@@ -100,6 +100,7 @@ public class fragmentCrearCuenta extends DialogFragment {
                                 i.putExtra("estadoRegistro","sinInfo");
                                 i.putExtra("toShow","modificarCliente");
                                 i.putExtra("id_cliente",user.getUid());*/
+                                    startActivity(new Intent(getActivity().getApplicationContext(),MainActivity.class));
                                     dismiss();
                                 } else {
                                     String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
@@ -145,7 +146,7 @@ public class fragmentCrearCuenta extends DialogFragment {
         mfirestore.collection("Clientes").document(idDocument).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(getContext(),"New here"+
+                Toast.makeText(getActivity().getApplicationContext(),"New here"+
                         cliente.getCorreoCliente(),Toast.LENGTH_LONG).show();
 
             }

@@ -6,7 +6,6 @@
     tools:context=".listaProductos"
     android:id="@+id/layoutListaAct"
     android:background="@drawable/fondogeneralproductos">
-
     <LinearLayout
         android:layout_width="150pt"
         android:textAlignment="center"
@@ -27,7 +26,7 @@
         ><TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mis Pedidos"
+        android:text="Nuestros Productos"
 
         android:textAlignment="center"
         android:textSize="10pt"
@@ -52,7 +51,7 @@
             android:layout_margin="5pt"
             android:textColor="@color/white"
             android:paddingHorizontal="30pt"
-            android:text="Nuevo Pedido"/>
+            android:text="Agregar Producto"/>
 
     </LinearLayout>
 

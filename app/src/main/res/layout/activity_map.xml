@@ -85,7 +85,7 @@
         app:layout_constraintTop_toTopOf="parent"
         map:cameraZoom="100"
         map:uiRotateGestures="true"
-        map:uiZoomControls="true" />
+         />
 
 </LinearLayout>
 

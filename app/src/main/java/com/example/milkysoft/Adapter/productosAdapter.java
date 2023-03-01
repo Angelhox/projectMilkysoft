@@ -2,6 +2,7 @@ package com.example.milkysoft.Adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
     FragmentManager fm;
     FragmentManager fragmentManager;
     fragmentAddProduct mfragmentAddProduct;
+    String mode="";
     int numeroPedido = (int)(Math.random() * (10000+1000)-1) + 1000;
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -45,6 +47,7 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
      *
      * @param options
      */
+
     public productosAdapter(@NonNull FirestoreRecyclerOptions<Producto> options,Activity activity,FragmentManager fm) {
         super(options);
        this.activity=activity;
@@ -56,6 +59,8 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.template_lista_productos,parent,false);
         return new ViewHolder(v);
+
+
     }
 
     @Override
@@ -63,6 +68,18 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
         DocumentSnapshot documentSnapshot=getSnapshots().getSnapshot(holder.getAbsoluteAdapterPosition());
         final String id=documentSnapshot.getId();
         //holder.codigo.setText(model.getCodigoProducto());
+        SharedPreferences preferenciasLogeo = activity.getSharedPreferences("preferenciasLogin",0);
+        mode=preferenciasLogeo.getString("mode","invitado");
+        Toast.makeText(activity.getApplicationContext(), mode,Toast.LENGTH_LONG).show();
+        if(mode=="cliente"){
+            holder.btnEditar.setVisibility(View.GONE);
+            holder.btnEliminar.setVisibility(View.GONE);
+        }else if(mode=="admin"){
+            holder.btnCarrito.setVisibility(View.GONE);
+        }else if(mode=="invitado"){
+            holder.btnEditar.setVisibility(View.GONE);
+            holder.btnEliminar.setVisibility(View.GONE);
+        }
         holder.name.setText(model.getNombreProducto());
         holder.peso.setText(model.getPesoProducto());
         holder.cantidad.setText(model.getContenido());
@@ -106,14 +123,19 @@ public class productosAdapter extends FirestoreRecyclerAdapter<Producto,producto
         holder.btnCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                carritofragment carritofragment= new carritofragment();
-                Bundle bundle= new Bundle();
-                bundle.putString("id",id);
-                bundle.putString("numeroPedido","pedido"+String.valueOf(numeroPedido));
-                bundle.putString("codigoProducto", model.getCodigoProducto());
-                bundle.putString("photoProducto",model.getPhoto());
-                carritofragment.setArguments(bundle);
-                carritofragment.show(fm,"open fragment");
+                if (mode == "invitado") {
+                    Toast.makeText(activity.getApplicationContext(), "Inicia Sesion antes de comprar",Toast.LENGTH_LONG).show();
+
+                }else {
+                    carritofragment carritofragment = new carritofragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", id);
+                    bundle.putString("numeroPedido", "pedido" + String.valueOf(numeroPedido));
+                    bundle.putString("codigoProducto", model.getCodigoProducto());
+                    bundle.putString("photoProducto", model.getPhoto());
+                    carritofragment.setArguments(bundle);
+                    carritofragment.show(fm, "open fragment");
+                }
             }
         });
 

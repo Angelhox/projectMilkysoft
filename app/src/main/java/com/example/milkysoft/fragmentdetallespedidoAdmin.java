@@ -4,38 +4,32 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.GeolocationPermissions;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.milkysoft.Adapter.itemAdapter;
-import com.example.milkysoft.Adapter.pedidosAdapter;
+import com.example.milkysoft.Adapter.itemAdapterAdmin;
 import com.example.milkysoft.Modelo.Items;
-import com.example.milkysoft.Modelo.Pedidos;
+import com.example.milkysoft.databinding.FragmentFragmentdetallespedidoAdminBinding;
 import com.example.milkysoft.databinding.FragmentFragmentdetallespedidoBinding;
-import com.example.milkysoft.databinding.FragmentListaPedidosBinding;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,18 +47,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class fragmentdetallespedido extends DialogFragment implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
+public class fragmentdetallespedidoAdmin extends DialogFragment implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
         private Button btnEnviarPedido,btnUbicacionEntrega;
         private EditText txtLatitud,txtLongitud;
         GoogleMap mMap;
-        private FragmentFragmentdetallespedidoBinding binding;
+        private FragmentFragmentdetallespedidoAdminBinding binding;
         private TextView tvTotalPagar,tvNombreEntrega, tvCorreoEntrega, tvTelefonoEntrega,
                 tvDireccionEntrega, tvCedulaEntrega,tvlatitudEntrega,tvlongitudEntrega;
         private View root;
     FragmentManager fm;
         SearchView srvItems;
         RecyclerView mRecyclerView;
-        itemAdapter mItemAdapter;
+        itemAdapterAdmin mItemAdapterAdmin;
         FirebaseFirestore mFirestore;
         FirebaseAuth mAuth;
         FirebaseUser mUser;
@@ -74,7 +68,7 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
         Query query;
         String nombrefac,correofact,telefonofact,direccionfact,cedulafact,latitudfact,longitudfact;
         DatabaseReference reference;
-        String token= "cTwEWFL9R4-7oYxIbndpVB:APA91bFjPNcKa-HWltfYo8mrLkA_wZw5Dup9303xasGYOe66QUrQb-XP-B5OkitN-u_C-YTNqX0lskLBb9GDERyFehyNoR0eCEUgRzqN0iYR1d6MEquoBLLbLDA4O-hzRq-_T_NSCsFH";
+        String token= "cOq6mMIXTqGaEEVQXtkebi:APA91bGjMS_TXSu71mWshocwdnzrzbK0Cx-t5uU4M4oPdhyXx-nX07_2-HQy0PZBu5o1LmOUvm_iA4-oSrgjhftFdINY1-26Zju-Q8yMA6PWXEgQvtN4hXFA1E3C_RL3zbrMkap5obim";
 
 
         @Override
@@ -82,13 +76,15 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
             super.onCreate(savedInstanceState);
             if (getArguments() != null) {
                 id_pedido=getArguments().getString("id_pedido");
+                usuarioAccion=getArguments().getString("usuarioaccion");
+
             }
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            binding = FragmentFragmentdetallespedidoBinding.inflate(inflater, container, false);
+            binding = FragmentFragmentdetallespedidoAdminBinding.inflate(inflater, container, false);
             root = binding.getRoot();
             //SupportMapFragment mapFragment = (SupportMapFragment) getContext().get.getChildFragmentManager().findFragmentById(R.id.map);
 
@@ -96,8 +92,9 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
             FirebaseMessaging.getInstance().subscribeToTopic("all");
             mAuth=FirebaseAuth.getInstance();
             mUser=mAuth.getCurrentUser();
-            usuarioAccion=mUser.getUid();
-            SharedPreferences preferencesfact = getActivity().getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
+            mFirestore=FirebaseFirestore.getInstance();
+            //usuarioAccion=mUser.getUid();
+          /*  SharedPreferences preferencesfact = getActivity().getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
             //preferences.getString("mode", cargoUsuario);
             //preferences.getString("id_cliente", id_cliente);
             //preferences.getString("logeado", true);
@@ -107,14 +104,28 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
             telefonofact=preferencesfact.getString("telefonoUsuario","no encontrado");
             direccionfact=preferencesfact.getString("direccionUsuario","no encontrado");
             latitudfact=preferencesfact.getString("latitudUsuario","no encontrado");
-            longitudfact=preferencesfact.getString("longitudUsuario","no encontrado");
-
+            longitudfact=preferencesfact.getString("longitudUsuario","no encontrado");*/
+            /*mFirestore.collection("Pedidos2").document(usuarioAccion).
+                    collection("Pedidos").
+                    document(id_pedido)
+                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    nombrefac = documentSnapshot.getString("clientePedido");
+                    correofact = documentSnapshot.getString("correoPedido");
+                    cedulafact = documentSnapshot.getString("cedulaPedido");
+                    telefonofact =documentSnapshot.getString("telefonoPedido");
+                    direccionfact = documentSnapshot.getString("direccionEntrega");
+                    latitudfact = documentSnapshot.getString("latitudEntrega");
+                    longitudfact = documentSnapshot.getString("longitudEntrega");
+                }
+                });*/
             SharedPreferences preferencias = this.getActivity().getSharedPreferences("Here",0);
             SharedPreferences.Editor editor = preferencias.edit();
             editor.putString("Here","ItemsPedido");
             editor.commit();
             iniciarControles();
-            valoresfact();
+
            /* SupportMapFragment mapFragment= (SupportMapFragment) getActivity()
                     .getSupportFragmentManager().findFragmentById(R.id.map);*/
 
@@ -132,10 +143,10 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
             FirestoreRecyclerOptions<Items> firestoreRecyclerOptions=
                     new FirestoreRecyclerOptions.Builder<Items>()
                             .setQuery(query,Items.class).build();
-            mItemAdapter=new itemAdapter(firestoreRecyclerOptions, this.getActivity(),getActivity().getSupportFragmentManager());
-            mItemAdapter.notifyDataSetChanged();
+            mItemAdapterAdmin=new itemAdapterAdmin(firestoreRecyclerOptions, this.getActivity(),getActivity().getSupportFragmentManager());
+            mItemAdapterAdmin.notifyDataSetChanged();
             mRecyclerView.setItemAnimator(null);
-            mRecyclerView.setAdapter(mItemAdapter);
+            mRecyclerView.setAdapter(mItemAdapterAdmin);
             //Ontener el total a pagar del Pedido
             mFirestore.collection("Pedidos2").document(usuarioAccion).
                     collection("Pedidos").
@@ -143,7 +154,15 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             total_pagar=String.valueOf(documentSnapshot.getDouble("totalPedido"));
+                            nombrefac = documentSnapshot.getString("clientePedido");
+                            correofact = documentSnapshot.getString("correoPedido");
+                            cedulafact = documentSnapshot.getString("cedulaPedido");
+                            telefonofact =documentSnapshot.getString("telefonoPedido");
+                            direccionfact = documentSnapshot.getString("direccionEntrega");
+                            latitudfact = documentSnapshot.getString("latitudEntrega");
+                            longitudfact = documentSnapshot.getString("longitudEntrega");
                             tvTotalPagar.setText(total_pagar);
+                            valoresfact();
 
                         }
                     });
@@ -165,8 +184,8 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
             @Override
             public void onClick(View v) {
                 FcmNotificationsSender notificationsSender=new FcmNotificationsSender(token,
-                        "Nuevo Pedido",
-                        correofact+" ha enviado un nuevo Pedido ", getActivity().getApplicationContext(),getActivity());
+                        "Gracias por preferirnos!",
+                        "Pronto enviaremos tu pedido :)", getActivity().getApplicationContext(),getActivity());
                 notificationsSender.SendNotifications();
 
                 String direccionEntrega=tvDireccionEntrega.getText().toString();
@@ -236,37 +255,37 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
             FirestoreRecyclerOptions<Items>firestoreRecyclerOptions=
                     new FirestoreRecyclerOptions.Builder<Items>().setQuery(query.orderBy("productoNombre")
                             .startAt(s).endAt(s+"~"),Items.class).build();
-            mItemAdapter=new itemAdapter(firestoreRecyclerOptions,this.getActivity(),getActivity().getSupportFragmentManager());
-            mItemAdapter.startListening();
-            mRecyclerView.setAdapter(mItemAdapter);
+            mItemAdapterAdmin=new itemAdapterAdmin(firestoreRecyclerOptions,this.getActivity(),getActivity().getSupportFragmentManager());
+            mItemAdapterAdmin.startListening();
+            mRecyclerView.setAdapter(mItemAdapterAdmin);
         }
 
         private void iniciarControles(){
             btnEnviarPedido=root.findViewById(R.id.btnEnviarPedido);
             srvItems=root.findViewById(R.id.srvPedidos);
             tvTotalPagar=root.findViewById(R.id.tvTotalPagar);
-            tvNombreEntrega=root.findViewById(R.id.tvNombreEntrega);
-            tvCorreoEntrega=root.findViewById(R.id.tvCorreoEntrega);
-            tvTelefonoEntrega=root.findViewById(R.id.tvTelefonoEntrega);
-            tvDireccionEntrega=root.findViewById(R.id.tvDireccionEntrega);
-            tvCedulaEntrega=root.findViewById(R.id.tvCedulaEntrega);
+            tvNombreEntrega=root.findViewById(R.id.tvNombreEntregaAdmin);
+            tvCorreoEntrega=root.findViewById(R.id.tvCorreoEntregaAdmin);
+            tvTelefonoEntrega=root.findViewById(R.id.tvTelefonoEntregaAdmin);
+            tvDireccionEntrega=root.findViewById(R.id.tvDireccionEntregaAdmin);
+            tvCedulaEntrega=root.findViewById(R.id.tvCedulaEntregaAdmin);
             txtLatitud=root.findViewById(R.id.txtLatitudmy);
            txtLongitud=root.findViewById(R.id.txtLongitudmy);
-           tvlatitudEntrega=root.findViewById(R.id.tvLatitudEntrega);
-           tvlongitudEntrega=root.findViewById(R.id.tvLongitudEntrega);
+           tvlatitudEntrega=root.findViewById(R.id.tvLatitudEntregaAdmin);
+           tvlongitudEntrega=root.findViewById(R.id.tvLongitudEntregaAdmin);
            btnUbicacionEntrega=root.findViewById(R.id.btnUbicacionEntrega);
 
         }
         @Override
         public void onStart() {
             super.onStart();
-            mItemAdapter.startListening();
+            mItemAdapterAdmin.startListening();
         }
 
         @Override
         public void onStop() {
             super.onStop();
-            mItemAdapter.stopListening();
+            mItemAdapterAdmin.stopListening();
         }
         private void valoresfact(){
             tvNombreEntrega.setText(nombrefac);

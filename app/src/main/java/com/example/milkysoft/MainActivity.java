@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.milkysoft.Modelo.Clientes;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -39,10 +40,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnLoginCorreo,btnCrearCuenta,btnLoginGoogle;
+    private Button btnLoginCorreo,btnCrearCuenta,btnLoginGoogle,btnInvitado;
     private EditText etCorreo,etContraseña;
     private TextView mtvRespuesta;
     String perfil=null;
@@ -57,19 +60,20 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser userlogeado;
     String mode;
     AwesomeValidation awesomeValidation;
+    Clientes clienteToPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mfirestore = FirebaseFirestore.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        onStart();
+       // onStart();
 
 
 
         firebaseAuth= FirebaseAuth.getInstance();
         userlogeado=firebaseAuth.getCurrentUser();
 
-        Toast.makeText(getApplicationContext(),mode,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),mode,Toast.LENGTH_LONG).show();
         iniciarControles();
        /* SharedPreferences preferences =getSharedPreferences("preferenciasLogin",0);
         mode=preferences.getString("mode","invitado");
@@ -135,6 +139,12 @@ public class MainActivity extends AppCompatActivity {
                 fm.show(getSupportFragmentManager(),"Navegar a Fragment");
             }
         });
+        btnInvitado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Content.class));
+            }
+        });
 
 
        /* if (logeados==true) {
@@ -193,7 +203,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            id_cliente=user.getUid();
+                           if(user!=null) {
+                               id_cliente = user.getUid();
+                               if(id_cliente!=""){
+                                   clienteToPost = new Clientes(user.getEmail());
+                                   postClientes(clienteToPost,user);
+                                   irHome(user);
+                               }
+                           }
+
+                            clienteToPost = new Clientes(user.getEmail());
+                            postClientes(clienteToPost,user);
                             irHome(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -251,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
     etContraseña=findViewById(R.id.etpassword);
     btnLoginGoogle=findViewById(R.id.btnGooglemain);
     mtvRespuesta=findViewById(R.id.tvRespuestamain);
+    btnInvitado=findViewById(R.id.btnInvitado);
 
 }
 
@@ -293,13 +314,14 @@ public class MainActivity extends AppCompatActivity {
                         //if (correo != null || correo!= ""||correo!="null") {
                             if (documentSnapshot.exists()) {
                                 String estadoRegistrov = documentSnapshot.getString("estadoRegistro");
+
                                 String nombreUsuario=documentSnapshot.getString("nombreCliente")+" "
                                         +documentSnapshot.getString("apellidoCliente");
                                 String cedulaUsuario=documentSnapshot.getString("cedulaFacturacion");
                                 String correoUsuario=documentSnapshot.getString("correoCliente");
                                 String telefonoUsuario=documentSnapshot.getString("telefonoCliente");
                                 String direccionUsuario=documentSnapshot.getString("direccionFacturacion");
-                                if(telefonoUsuario.isEmpty()||telefonoUsuario==""||telefonoUsuario==null){
+                                if(telefonoUsuario==""||telefonoUsuario==null){
                                     telefonoUsuario=documentSnapshot.getString("celularCliente");
                                 }
 
@@ -317,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
 
                             if (estadoRegistrov.equalsIgnoreCase("sinInfo")) {
                                 Intent i = new Intent(getApplicationContext(), Content.class);
+                                i.putExtra("id_usuario",id_cliente);
                                 i.putExtra("toShow", "modificarCliente");
                                 i.putExtra("acceso", "cliente");
 
@@ -324,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(i);
                             } else {
                                 Intent i = new Intent(getApplicationContext(), Content.class);
+                                i.putExtra("id_usuario",id_cliente);
                                 i.putExtra("toShow", "menuInicio");
                                 i.putExtra("acceso", "cliente");
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -352,7 +376,7 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                         SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
                                         SharedPreferences.Editor editor = preferences.edit();
-                                        editor.putString("mode", cargoUsuario);
+                                        editor.putString("mode", "admin");
                                         editor.putString("id_cliente", id_cliente);
                                         editor.putBoolean("logeado", true);
                                         editor.putString("nombreUsuario",nombreUsuario);
@@ -413,6 +437,60 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void postClientes(Clientes cliente,FirebaseUser user){
+        String id_clientetopost=user.getUid();
+        mfirestore.collection("Usuarios").document(id_clientetopost).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                if (!documentSnapshot.exists()) {
+        mfirestore.collection("Clientes").document(id_clientetopost).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                // String correo = documentSnapshot.getString("correoCliente");
+                //if (correo != null || correo!= ""||correo!="null") {
+                if (!documentSnapshot.exists()) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("codigoCliente", cliente.getCodigoCliente());
+                    map.put("nombreCliente", cliente.getNombreCliente());
+                    map.put("apellidoCliente", cliente.getApellidoCliente());
+                    map.put("telefonoCliente", cliente.getTelefonoCliente());
+                    map.put("celularCliente", cliente.getCelularCliente());
+                    map.put("correoCliente", cliente.getCorreoCliente());
+                    map.put("photoCliente", cliente.getPhotoCliente());
+                    map.put("cedulaFacturacion", cliente.getCedulaFacturacion());
+                    map.put("rucFacturacion", cliente.getRucFacturacion());
+                    map.put("direccionFacturacion", cliente.getDireccionFacturacion());
+                    map.put("telefonoFacturacion", cliente.getTelefonoFacturacion());
+                    map.put("ubicacionEntrega", cliente.getUbicacionEntrega());
+                    map.put("latitud", cliente.getLatitud());
+                    map.put("longitud", cliente.getLongitud());
+                    map.put("estadoRegistro", "sinInfo");
+                    String idDocument = user.getUid();
+                    //uploadPhoto();
+                    mfirestore.collection("Clientes").document(idDocument).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "New here" +
+                                    cliente.getCorreoCliente(), Toast.LENGTH_LONG).show();
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                }} });
+
+                }}});}
+
+
+
+
+
     private void dameToastdeerror(String error) {
 
         switch (error) {

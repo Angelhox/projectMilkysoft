@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
+        android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
@@ -16,14 +17,12 @@
             android:layout_width="332dp"
             android:layout_height="199dp"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="100dp"
-            android:visibility="gone"
+
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100pt"
+
             android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -63,26 +62,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_margin="10pt"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10pt"
             android:drawableLeft="@drawable/mailblk32x32"
             android:text="Iniciar con Correo" />
         <Button
             android:id="@+id/btnCrearCuenta"
             android:text="Crear Cuenta"
-            android:drawableLeft="@drawable/googleblk32x32"
+            android:textColor="@color/white"
+            android:drawableLeft="@drawable/signin32x32"
             android:layout_marginHorizontal="10pt"
-            android:layout_marginBottom="10dp"
+            android:layout_marginVertical="5pt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/btnInvitado"
+                android:text="Continua como Invitado"
+                android:textColor="@color/white"
+                android:drawableLeft="@drawable/googleblk32x32"
+                android:layout_marginHorizontal="10pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
 
         <Button
             android:id="@+id/btnGooglemain"
             android:text="Google"
+            android:textColor="@color/white"
             android:drawableLeft="@drawable/googleblk32x32"
-            android:layout_margin="10pt"
-            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="10pt"
+            android:layout_marginVertical="5pt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>

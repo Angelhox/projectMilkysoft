@@ -102,9 +102,11 @@ public class fragmentAddClientes extends Fragment {
         if(getArguments()!=null){
             id_cliente=getArguments().getString("id_cliente");
             if(id_cliente!=null||id_cliente!="") {
-                user=FirebaseAuth.getInstance().getCurrentUser();
-                id_cliente=user.getUid();
                         getCliente();
+            }else{
+                id_cliente=getArguments().getString("id_usuario");
+                if(id_cliente!=null||id_cliente!="") {
+                    getCliente();}
             }
         }
 
@@ -184,11 +186,19 @@ public class fragmentAddClientes extends Fragment {
                                 //progressDialog.dismiss();
                                 try {
                                     if (!download_uri.equals("")) {
-                                        Picasso.get()
+                                        /*Picasso.get()
                                                 .load(download_uri)
                                                 .resize(150, 150)
+                                                .into(imgCliente);*/
+
+                                        Picasso.get()
+                                                .load(download_uri).fit().centerCrop()
+                                                /* .placeholder()
+                                                 .resize()*/
                                                 .into(imgCliente);
+
                                     }
+
                                 } catch (Exception e) {
                                     Toast.makeText(getContext(), "Error al cargar la imagen Error: " + e, Toast.LENGTH_LONG).show();
                                 }
@@ -339,9 +349,10 @@ public class fragmentAddClientes extends Fragment {
                         Toast toast=Toast.makeText(getContext(),"Cargando imagen...",Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.TOP,0,200);
                         toast.show();
-                        Picasso.get()
-                                .load(imgClienteResource)
-                                .resize(150,150)
+                        Picasso.get().load(imgClienteResource)
+                                //.fit().centerCrop()
+                                //.placeholder()
+                                 .resize(200,200)
                                 .into(imgCliente);
                     }else{
                         Toast.makeText(getContext(),"No encontramos una imagen",Toast.LENGTH_LONG).show();

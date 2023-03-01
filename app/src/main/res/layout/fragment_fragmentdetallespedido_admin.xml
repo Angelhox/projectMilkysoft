@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nombre cliente:  "/>
             <TextView
-                android:id="@+id/tvNombreEntrega"
+                android:id="@+id/tvNombreEntregaAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Angel Cachupud Cusin"/>
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cedula:  "/>
             <TextView
-                android:id="@+id/tvCedulaEntrega"
+                android:id="@+id/tvCedulaEntregaAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1724674824"/>
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:text="Correo:  "/>
         <TextView
-            android:id="@+id/tvCorreoEntrega"
+            android:id="@+id/tvCorreoEntregaAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="angelcachupud@gmail.com"/>
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="Telefono:  "/>
             <TextView
-                android:id="@+id/tvTelefonoEntrega"
+                android:id="@+id/tvTelefonoEntregaAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0998171432"/>
@@ -107,20 +107,22 @@
                 android:layout_height="wrap_content"
                 android:text="Direccion:  "/>
             <TextView
-                android:id="@+id/tvDireccionEntrega"
+                android:id="@+id/tvDireccionEntregaAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cayambe Ascazubi y Restauracion "/>
             <TextView
-                android:id="@+id/tvLatitudEntrega"
+                android:id="@+id/tvLatitudEntregaAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 />
 
             <TextView
-                android:id="@+id/tvLongitudEntrega"
+                android:id="@+id/tvLongitudEntregaAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 />
 
 
@@ -130,8 +132,9 @@
             android:id="@+id/btnUbicacionEntrega"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:text="Añadir Ubicacion"/>
+            android:text="Ver Ubicacion"/>
 
         <LinearLayout
             android:id="@+id/layoutMapa"
@@ -213,9 +216,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5pt"
+            android:textColor="@color/white"
 
             android:paddingHorizontal="30pt"
-            android:text="Enviar Pedido"/>
+            android:text="Notificar como Recibido"/>
 
     </LinearLayout>
 

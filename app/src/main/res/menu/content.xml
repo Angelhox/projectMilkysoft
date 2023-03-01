@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="Cerrar Sesion"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/itIniciarSesion"
+        android:orderInCategory="100"
+        android:title="IniciarSesion"
+        app:showAsAction="never" />
 </menu>

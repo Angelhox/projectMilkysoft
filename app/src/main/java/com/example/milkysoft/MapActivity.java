@@ -63,7 +63,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     LocationCallback locationCallback;
     Location location;
     Marker markerLocation;
-    String nuevaDireccion;
+    String nuevaDireccion,nuevaLatitud,nuevaLongitud;
     DatabaseReference mDatabase;
 
     @Override
@@ -97,7 +97,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 SharedPreferences preferences = getSharedPreferences("preferenciasLogin", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 nuevaDireccion=txtdireccion.getText().toString();
+                nuevaLatitud=txtlatitud.getText().toString();
+                nuevaLongitud=txtlongitud.getText().toString();
                 editor.putString("direccionUsuario",nuevaDireccion);
+                editor.putString("latitudUsuario",nuevaLatitud);
+                editor.putString("longitudUsuario",nuevaLongitud);
                 editor.commit();
                 Intent i= new Intent(getApplicationContext(),Content.class);
                 i.putExtra("toShow","listaPedidos");

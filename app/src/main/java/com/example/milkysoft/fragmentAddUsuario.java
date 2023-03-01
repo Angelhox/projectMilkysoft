@@ -207,7 +207,7 @@ public class fragmentAddUsuario extends Fragment {
                                     if (!download_uri.equals("")) {
                                         Picasso.get()
                                                 .load(download_uri)
-                                                .resize(150, 150)
+                                                .resize(190, 150)
                                                 .into(imgUsuario);
                                     }
                                 } catch (Exception e) {
@@ -388,7 +388,7 @@ public class fragmentAddUsuario extends Fragment {
                         toast.show();
                         Picasso.get()
                                 .load(imgUsuarioResource)
-                                .resize(150,150)
+                                .resize(150,10)
                                 .into(imgUsuario);
                     }else{
                         Toast.makeText(getContext(),"No encontramos una imagen",Toast.LENGTH_LONG).show();

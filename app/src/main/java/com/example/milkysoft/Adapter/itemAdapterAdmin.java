@@ -3,7 +3,6 @@ package com.example.milkysoft.Adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -21,25 +20,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.milkysoft.Content;
 import com.example.milkysoft.Modelo.Items;
-import com.example.milkysoft.Modelo.Producto;
 import com.example.milkysoft.R;
-import com.example.milkysoft.carritofragment;
 import com.example.milkysoft.fragmentAddProduct;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class itemAdapter extends FirestoreRecyclerAdapter<Items,itemAdapter.ViewHolder> {
+public class itemAdapterAdmin extends FirestoreRecyclerAdapter<Items, itemAdapterAdmin.ViewHolder> {
     private FirebaseFirestore mFirestore= FirebaseFirestore.getInstance();
     private Double precio;
 
@@ -62,7 +57,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<Items,itemAdapter.View
      *
      * @param options
      */
-    public itemAdapter(@NonNull FirestoreRecyclerOptions<Items> options, Activity activity, FragmentManager fm) {
+    public itemAdapterAdmin(@NonNull FirestoreRecyclerOptions<Items> options, Activity activity, FragmentManager fm) {
         super(options);
         this.activity=activity;
         this.fm=fm;
@@ -71,7 +66,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<Items,itemAdapter.View
     }
 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.template_item_pedido,parent,false);
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.template_item_pedido_admin,parent,false);
         return new ViewHolder(v);
     }
 

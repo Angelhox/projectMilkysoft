@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -28,12 +29,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class listaProductosact extends AppCompatActivity {
-    private Button btnAgregarProducto;
+    private Button btnAgregarProducto,btnIniciarSesion;
     private FrameLayout constraintLayout;
+    private LinearLayout layoutIniciarSession,layoutAddProducto;
     private FragmentListaProductosBinding binding;
     private View root;
     SearchView srvProductos;
     String compra="";
+    String mode="";
     int numeroCompra=0;
     int numeroPedido = (int)(Math.random() * (10000+1000)-1) + 1000;
     RecyclerView mRecyclerView;
@@ -45,10 +48,13 @@ public class listaProductosact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_productosact);
-       iniciarControles();
+        SharedPreferences preferenciasLogeo = getSharedPreferences("preferenciasLogin",0);
+        mode=preferenciasLogeo.getString("mode","invitado");
+        Toast.makeText(getApplicationContext(),mode,Toast.LENGTH_LONG).show();
         SharedPreferences compras= getSharedPreferences("Compras",0);
         compra=compras.getString("Compra","no");
         numeroCompra=numeroCompra+compras.getInt("compraNumero",0);
+        iniciarControles();
 
         mFirestore=FirebaseFirestore.getInstance();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -69,6 +75,12 @@ public class listaProductosact extends AppCompatActivity {
                 i.putExtra("toShow","nuevoProducto");
                 startActivity(i);
 
+            }
+        });
+        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });
 
@@ -109,10 +121,47 @@ public class listaProductosact extends AppCompatActivity {
     }
 
     private void iniciarControles(){
-        btnAgregarProducto=findViewById(R.id.btnAgregarProductoAct);
-        srvProductos=findViewById(R.id.srvProductosAct);
-        mRecyclerView=findViewById(R.id.rvlistaProductosAct);
-        constraintLayout=findViewById(R.id.layoutListaAct);
+        mRecyclerView = findViewById(R.id.rvlistaProductosAct);
+        srvProductos = findViewById(R.id.srvProductosAct);
+        btnAgregarProducto = findViewById(R.id.btnAgregarProductoAct);
+        srvProductos = findViewById(R.id.srvProductosAct);
+        constraintLayout = findViewById(R.id.layoutListaAct);
+        btnIniciarSesion = findViewById(R.id.btnIniciarSession);
+        layoutIniciarSession=findViewById(R.id.layoutIniciarSession);
+        if(mode=="invitado") {
+            btnAgregarProducto = findViewById(R.id.btnAgregarProductoAct);
+            srvProductos = findViewById(R.id.srvProductosAct);
+            constraintLayout = findViewById(R.id.layoutListaAct);
+            btnIniciarSesion = findViewById(R.id.btnIniciarSession);
+            layoutIniciarSession=findViewById(R.id.layoutIniciarSession);
+            //layoutAddProducto=findViewById(R.id.layoutAddProducto);
+           // layoutIniciarSession.setVisibility(View.GONE);
+            btnAgregarProducto.setVisibility(View.GONE);
+            //layoutAddProducto.setVisibility(View.GONE);
+
+        }else if(mode=="admin"){
+            btnAgregarProducto = findViewById(R.id.btnAgregarProductoAct);
+            srvProductos = findViewById(R.id.srvProductosAct);
+            constraintLayout = findViewById(R.id.layoutListaAct);
+            btnIniciarSesion = findViewById(R.id.btnIniciarSession);
+            layoutIniciarSession=findViewById(R.id.layoutIniciarSession);
+            //layoutAddProducto=findViewById(R.id.layoutAddProducto);
+            layoutIniciarSession.setVisibility(View.GONE);
+            //btnAgregarProducto.setVisibility(View.GONE);
+            //layoutAddProducto.setVisibility(View.GONE);
+
+        }else if(mode=="cliente"){
+            btnAgregarProducto = findViewById(R.id.btnAgregarProductoAct);
+            srvProductos = findViewById(R.id.srvProductosAct);
+            constraintLayout = findViewById(R.id.layoutListaAct);
+            btnIniciarSesion = findViewById(R.id.btnIniciarSession);
+            layoutIniciarSession=findViewById(R.id.layoutIniciarSession);
+           // layoutAddProducto=findViewById(R.id.layoutAddProducto);
+            layoutIniciarSession.setVisibility(View.GONE);
+            btnAgregarProducto.setVisibility(View.GONE);
+            //layoutAddProducto.setVisibility(View.GONE);
+
+        }
     }
     @Override
     public void onStart() {
