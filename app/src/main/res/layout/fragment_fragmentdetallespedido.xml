@@ -15,10 +15,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_marginTop="20pt">
-        <SearchView
-            android:id="@+id/srvPedidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,6 +111,7 @@
             <TextView
                 android:id="@+id/tvLatitudEntrega"
                 android:layout_width="wrap_content"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 />
 
@@ -121,6 +119,7 @@
                 android:id="@+id/tvLongitudEntrega"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 />
 
 

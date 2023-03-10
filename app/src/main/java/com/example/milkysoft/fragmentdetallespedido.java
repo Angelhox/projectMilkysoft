@@ -74,7 +74,7 @@ public class fragmentdetallespedido extends DialogFragment implements OnMapReady
         Query query;
         String nombrefac,correofact,telefonofact,direccionfact,cedulafact,latitudfact,longitudfact;
         DatabaseReference reference;
-        String token= "cTwEWFL9R4-7oYxIbndpVB:APA91bFjPNcKa-HWltfYo8mrLkA_wZw5Dup9303xasGYOe66QUrQb-XP-B5OkitN-u_C-YTNqX0lskLBb9GDERyFehyNoR0eCEUgRzqN0iYR1d6MEquoBLLbLDA4O-hzRq-_T_NSCsFH";
+        String token= "fudsnxtoT5qifE8x0cc83h:APA91bGsCGtUdCo1JuONndP_cirBTye24iBtn9SMCNLGcKVxD6O8t-Xvv7Raola2zdajR-6RKRjTPVsmuQtbhfXeAPDBjPQ4c2DHi5N0gTSacuiV6KIP2SGEtGpxSz4IrehIO7eKUNjN";
 
 
         @Override

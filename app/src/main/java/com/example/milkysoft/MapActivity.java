@@ -186,7 +186,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         locationRequest.setSmallestDisplacement(10);
     }
 
-    private void checkPermission(String accessFineLocation, String accessCoarseLocation) {
+    private void  checkPermission(String accessFineLocation, String accessCoarseLocation) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, accessCoarseLocation) != PackageManager.PERMISSION_GRANTED &&
                     ActivityCompat.checkSelfPermission(this, accessFineLocation) != PackageManager.PERMISSION_GRANTED) {

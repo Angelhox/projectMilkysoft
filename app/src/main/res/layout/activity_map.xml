@@ -65,14 +65,22 @@
         android:background="@color/white"
        android:layout_margin="5pt"  />
     </com.google.android.material.textfield.TextInputLayout>
-
+        <Button
+            android:gravity="bottom"
+            android:id="@+id/btnGuardarUbicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2pt"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:text="Guardar Ubicacion" />
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="5pt"
     android:gravity="center"
-    android:layout_marginBottom="30pt"
+    android:layout_marginTop="20pt"
     android:background="@color/black">
 
     <fragment
@@ -90,14 +98,7 @@
 
 </LinearLayout>
 
-        <Button
-            android:gravity="bottom"
-            android:id="@+id/btnGuardarUbicacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2pt"
-            android:layout_gravity="center_horizontal"
-            android:text="Guardar Ubicacion" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
